@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  web:
+    container_name: teambition_web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    restart: always
+    ports:
+      - 30006:3000
+    networks:
+      - app_network
+    volumes:
+      - ./logs:/app/var/logs/
+  # api:
+  #   container_name: api
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/api/Dockerfile
+  #   restart: always
+  #   ports:
+  #     - 3001:3001
+  #   networks:
+  #     - app_network
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  app_network:
+    # external: true
